@@ -128,13 +128,26 @@ VALUES
 
 CREATE TABLE products
 (
-	product_id INT NOT NULL,
+	product_id VARCHAR(5) NOT NULL,
 	order_id INT NOT NULL,
 	manufacture_date DATE NOT NULL,
 	raw_material VARCHAR(20) NOT NULL,
 	vendor_id INT NOT NULL,
-	FOREIGN KEY (order_id) REFERENCES sales(order_id)
+	FOREIGN KEY (order_id) REFERENCES sales(order_id),
+	FOREIGN KEY (vendor_id) REFERENCES vendor_info(vendor_id)
 );
 
-ALTER TABLE products
-ADD FOREIGN KEY (raw_material) REFERENCES vendors(raw_material);
+INSERT INTO products
+(product_id, order_id, manufacture_date, raw_material, vendor_id)
+VALUES
+('AZ145', 2, '2005-12-23', 'Steel', 1),
+('CS784', 4, '2005-11-28', 'Plastic', 2),
+('AZ147', 6, '2002-08-15', 'Steel', 3),
+('FD344', 3, '2005-11-03', 'Milk', 1),
+('GR233', 3, '2005-11-30', 'Pulses', 2),
+('FD123', 2, '2005-10-03', 'Milk', 2),
+('CS783', 1, '2004-11-03', 'Plastic', 2),
+('CS435', 5, '2001-11-04', 'Steel', 1),
+('GR567', 6, '2005-09-03', 'Pulses', 2),
+('FD267', 5, '2002-03-21', 'Bread', 4),
+('FD333', 9, '2001-12-12', 'Milk' , 1);
